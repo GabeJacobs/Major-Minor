@@ -1,0 +1,72 @@
+<mt:Ignore>
+       Index_jqm.html is the main index page for the maj min mobile site. It simply displays a menu that allows you to go to the about page, the  lessons, and the trainers. Edit this page if you want to change the front page content. If you would like to hide things from the menu, or change the names of things on the menu, this is the place to do it.
+</mt:Ignore>
+
+<!DOCTYPE html>
+<html>
+   <head>
+
+    <mt:include module="Header Content">
+
+    <title>Major Minor Mini-Course</title>
+
+    <mt:ignore><script type="text/javascript"
+          src="http://maps.google.com/maps/api/js?sensor=true"></script></mt:ignore>
+   </head>
+   <body>
+   
+    <!-- Main index page -->
+    
+    <div data-role="page" id="home" >
+	<div data-role="header">
+	 	  <h1>Major Minor</h1>
+        </div> <!-- /header -->
+    
+     <div data-role="content">
+	<h4>Major Minor Mini-Course</h4>
+        
+        <ul data-role="listview" data-inset="true">
+                <li>
+                       	<a href="lessons.html" data-transition="slide" data-prefetch>
+                           	Lessons <span class="ui-li-count">7</span>
+                       	</a>
+                    </li>
+                    <li>
+                       	<a href="trainers.html" data-transition="slide" data-prefetch>
+                           	Trainers
+                       	</a>
+                    </li>
+                    <!--
+					<li>
+                       	<a href="feedback.html" data-transition="slide" data-prefetch>
+                           	Feedback
+                       	</a>
+                    </li>
+                    -->
+        </ul>
+
+        <ul data-role="listview" data-inset="true">
+                   	<li>
+                       	<a href="about.html" data-transition="slide" data-prefetch>
+                           	About
+                       	</a>
+                    </li>
+                    <li>
+                       	<a href="feedback.html" data-transition="slide" data-prefetch>
+                           	Feedback
+                       	</a>
+                    </li>
+                   
+        </ul> 
+       
+     </div> <!-- /content -->
+     
+    <div data-role="footer" data-position="fixed">
+       <p style="text-align:center; font-size:small;">CCNMTL - Music Humanities<br />Columbia University</p>
+    </div>
+</div> <!-- /page -->
+    
+
+ </div>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<p>Q: Is this a major or minor cadence?</p>
+<a data-theme="a" data-inline="true" onclick="play8()" data-role="button" data-mini="true" id="play8" style="width:170px;vertical-align:middle;"><img id="pImage8" style="vertical-align:text-top;margin-right:7px;" src="http://i.imgur.com/1scqH.png" alt="play">Play Sample</a><span style="margin-left:10px;font-size:40px;color:green;vertical-align:middle;" id="Fcorrect8" class="correct">0</span><span id="Fslash8" style="font-size:40px;vertical-align:middle;">/</span><span id="Ftotal8" style="font-size:40px;color:green;vertical-align:middle;" class="total">0</span></p>
+A: <span class="response"></span>
+<fieldset class="ui-grid-a">
+	<div class="ui-block-a">
+	<a data-mini="true" onclick="major8()"data-role="button" href="#">Major</a>
+	</div>
+	<div class="ui-block-b">
+	<a data-mini="true" onclick="minor8()"data-role="button" href="#">Minor</a>
+	</div></fieldset><fieldset class="ui-grid-a">
+	<center><a data-mini="true" onclick="newtune8()" data-role="button" href="#">Next Sample</a><center>
+</fieldset> 
+<em>To begin, press the "Play Sample" button above</em>
+
+	<span style="display:none;">
+	<audio data-inline="true" id="audio-8" controls="true" style="display:none;">
+		<source src="<mt:blogURL>lessons/samples/Mml1ae5.mp3" />
+	</audio>
+	</span>
+       	
+    <script language="JavaScript">
+
+		var image8 = document.getElementById("pImage8");
+		var btnPlay8 = document.getElementById("play8");
+
+		var prompted = 0;
+		var percent = 0.0;
+      	var correct = 0; 
+	  	var total = 0; 
+	  	var voted = 0;
+      	var basename8 = 'http://mt.ccnmtl.columbia.edu/majmin_mbl/trainers/media/trainer';
+	  	var pick8 = Math.floor(Math.random()*80); 
+      	var filepicked8 = basename8+"5/5ex"+pick8+".mp3";
+	  	var audioElement8 = document.getElementById('audio-8');
+		var url = self.document.location.hash;
+		updateLabels8();
+		
+		btnPlay8.addEventListener("click", function(){
+		speakerOn8();			
+	}, false);
+
+function speakerOn8()	
+{
+			image8.src = "http://i.imgur.com/poNZ6.png";			
+}
+
+
+function updateLabels8()
+{
+	  	$(".duration span").html(audioElement8.duration.toFixed(1));
+      	$(".filename span").html(pick8);
+      	$(".testnum").html(total);
+      	$(".correct").html(correct); 
+      	$(".total").html(total);
+      	$(".response").html("");
+}	
+
+function newtune8()
+{
+	if(voted == 1)
+	{
+		pick8 = Math.floor(Math.random()*80); 
+		filepicked8 = basename8+"5/5ex"+pick8+".mp3";
+		audioElement8.setAttribute('src', filepicked8);
+        audioElement8.play();
+		voted = 0;
+		speakerOn8();			
+		updateLabels8();
+	}
+	else if(voted == 0)
+	{
+	     $(".response").html("Awaiting response. Try Play Again?");
+	}
+	  
+}
+
+function play8()
+{
+	if(url == "#quiz10663")
+	{
+		audioElement8.setAttribute('src', filepicked8);
+    	audioElement8.play();
+	}
+}
+
+function minor8()
+{
+	if (voted == 1) 
+	{ 
+		$(".response").html("Already voted. Play new sample");
+	}
+    else 
+	{
+        voted = 1;
+        if(pick8%2 == 1)
+		{
+        	correct++; 
+			$(".response").html("Yes, that was minor cadence."); 
+		}
+        else 
+		{
+			red8();
+			$(".response").html("Minor is incorrect");
+		}
+        total++;   
+        $(".total").html(total);  
+ 		$(".correct").html(correct); 
+	}
+	percent = correct/total;
+	if(percent >= .75 && total >= 10 && prompted == 0)
+	{
+		$.mobile.changePage( "success.html", { role: "dialog", transition: "pop"} );
+		prompted = 1;
+	}
+	if(percent <= .5 && total >= 10 && prompted == 0)
+	{
+		$.mobile.changePage( "failure.html", { role: "dialog", transition: "pop"} );
+		prompted = 1;
+	}
+}
+
+function major8()
+{
+	if (voted == 1) 
+	{ 
+		$(".response").html("Already voted. Play new sample");
+	}
+    else 
+	{
+        voted = 1;
+        if(pick8%2 != 1)
+		{
+        	correct++; 
+			$(".response").html("Yes, that was major cadence."); 
+		}
+        else 
+		{
+			red8();
+			$(".response").html("Major is incorrect");
+		}
+        total++
+        $(".total").html(total);     
+ 		$(".correct").html(correct); 
+	}
+	percent = correct/total;
+	if(percent >= .75 && total >= 10 && prompted == 0)
+	{
+		$.mobile.changePage( "success.html", { role: "dialog", transition: "pop"} );
+		prompted = 1;
+	}
+	if(percent <= .5 && total >= 10 && prompted == 0)
+	{
+		$.mobile.changePage( "failure.html", { role: "dialog", transition: "pop"} );
+		prompted = 1;
+	}
+}
+
+
+audioElement8.addEventListener("ended", function() 
+{
+    image8.src = "http://i.imgur.com/1scqH.png";
+	audioElement8.pause();
+	audioElement8.currentTime = 0;	
+}, false);
+
+function red8()
+{
+	document.getElementById('Fcorrect8').style.color = 'red';
+	document.getElementById('Ftotal8').style.color = 'red';
+	document.getElementById('Fslash8').style.color = 'red';
+	
+	setTimeout(function(){
+		document.getElementById('Fcorrect8').style.color = 'green';
+		document.getElementById('Ftotal8').style.color = 'green';
+		document.getElementById('Fslash8').style.color = 'green';
+		
+		},1250);
+}
+
+
+
+	</script>

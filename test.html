@@ -1,0 +1,154 @@
+var image1 = document.getElementById("pImage1");
+var btnPlay1 = document.getElementById("play1");
+var tnum = document.getElementById("tno").getAttribute("name");
+var tpath = tnum + "/" + tnum + "ex";
+var prompted = 0;
+var percent = 0.0;
+var correct = 0; 
+var voted = 0;
+var total = 0; 
+var samplecount = 1;
+var basename = '<mt:blogURL>trainers/media/trainer';
+var pick;
+if (sample_size < 10 && total < 9){
+	pick = total;
+	}
+	else { 
+		pick = Math.floor(Math.random() * sample_size); }
+var filepicked = basename + tpath + pick + ".mp3";
+var audioElement = document.getElementById('eartrainer');
+audioElement.setAttribute('src', filepicked);
+
+		
+// btnPlay1.addEventListener("click", function(){
+//		speakerOn();			
+//	}, false);
+
+function speakerOn()
+		{
+		image1.src = "<mt:blogURL>images/audio_on.png";			
+		}
+
+function updateLabels()
+		{
+	  	$(".duration span").html(audioElement.duration.toFixed(1));
+      	$(".filename span").html(pick);
+      	$(".testnum").html(total);
+      	$(".correct").html(correct); 
+      	$(".total").html(total);
+      	$(".response").html("");
+      	document.getElementById("buttontxt").innerHTML="Play Sample " + samplecount;
+		}	
+
+function newtune() {
+		if(voted == 1) {
+			if (sample_size < 10 && total < 9){
+				pick = total;
+				}
+				else {
+					pick = Math.floor(Math.random() * sample_size); }
+			filepicked = basename + tpath + pick + ".mp3";
+			audioElement.setAttribute('src', filepicked);	
+	        //audioElement.play();
+	        playsample();
+			voted = 0;
+			samplecount++;
+			speakerOn();
+			updateLabels();
+			}
+		else if(voted == 0 && samplecount > 0)
+			{
+		     $(".response").html("Awaiting response. Try Play Again?");
+			}
+	  
+		}
+		
+function playsample() {
+		// Play Sample button toggles on/off for sample. See audioElement.eventListeners.
+		if (audioElement.paused){
+    	audioElement.play();
+		}
+		else {
+		audioElement.pause();
+		audioElement.currentTime = 0;
+		}
+		}
+
+
+function voting(selection) {
+		if (voted == 1) { 
+			$(".response").html("Already voted. You can replay the current sample or request a new sample.");
+			}
+		else {
+	        voted = 1;
+	        // odd
+    	    if(pick%2 == 1 && selection=="minor") {
+        		correct++;
+				$(".response").html("Yes, that was minor " + resp_suffix); 
+				}
+	        	else if(pick%2 != 1 && selection=="major") {
+	         		correct++; 
+					$(".response").html("Yes, that was major " + resp_suffix); 
+					}
+	       			else if(pick%2 == 1 && selection=="major") {
+						$(".response").html("Major is incorrect");
+						}
+			        	else if(pick%2 != 1 && selection=="minor") {
+							$(".response").html("Minor is incorrect");
+							}
+			total++;	   
+		    $(".total").html(total);  
+	 		$(".correct").html(correct); 
+			}
+
+		percent = correct/total;
+		if(percent > 0.6 && prompted == 0)	{
+			if (total >= 10) {
+				$.mobile.changePage( "../success.html", { role: "dialog", transition: "pop"} );
+				prompted = 1;
+				}
+			green();
+			}
+		if(percent <= 0.6 && prompted == 0){
+			if (total >= 10) {
+			  $.mobile.changePage( "../failure.html", { role: "dialog", transition: "pop"} );
+			  prompted = 1;
+			  }
+			red();
+			}
+		}
+		
+	//button speaker image changes on eventListeners
+
+	audioElement.addEventListener("ended", function() 
+	{
+    	image1.src = "<mt:blogURL>images/audio_off.png";
+		audioElement.pause();
+		audioElement.currentTime = 0;	
+	}, false);
+
+	audioElement.addEventListener("playing", function() 
+	{
+    	image1.src = "<mt:blogURL>images/audio_on.png";	
+	}, false);
+	
+	audioElement.addEventListener("pause", function() 
+	{
+    	image1.src = "<mt:blogURL>images/audio_off.png";	
+	}, false);
+
+	function red() {
+		document.getElementById('Fcorrect').style.color = 'red';
+		document.getElementById('Ftotal').style.color = 'red';
+		document.getElementById('Fslash').style.color = 'red';
+		}
+		
+		function green() {
+		document.getElementById('Fcorrect').style.color = 'green';
+		document.getElementById('Ftotal').style.color = 'green';
+		document.getElementById('Fslash').style.color = 'green';
+		}
+		
+		$(document).bind(".ui-page","pagebeforeshow", function(evt, ui){
+           alert("boom");
+        }

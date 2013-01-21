@@ -1,0 +1,182 @@
+	<p>Q: Is this a major or minor triad?</p>
+	<a data-theme="a" data-inline="true"  onclick="play5()" data-role="button" data-mini="true" id="play5" style="width:170px;vertical-align:middle;"><img id="pImage5" style="vertical-align:text-top;margin-right:7px;" src="http://i.imgur.com/1scqH.png" alt="play">Play Sample</a><span style="margin-left:10px;font-size:40px;color:green;vertical-align:middle;" id="Fcorrect5" class="correct">0</span><span id="Fslash5" style="font-size:40px;vertical-align:middle;">/</span><span id="Ftotal5" style="font-size:40px;color:green;vertical-align:middle;" class="total">0</span></p>
+	A: <span class="response"></span>
+	<fieldset class="ui-grid-a">
+		<div class="ui-block-a">
+		<a data-mini="true" onclick="major5()"data-role="button" href="#">Major</a>
+		</div>
+		<div class="ui-block-b">
+		<a data-mini="true" onclick="minor5()"data-role="button" href="#">Minor</a>
+		</div></fieldset><fieldset class="ui-grid-a">
+		<center><a data-mini="true" onclick="newtune5()" data-role="button" href="#">Next Sample</a><center>
+	</fieldset> 
+	<em>To begin, press the "Play Sample" button above</em>
+	
+	<span style="display:none;">
+	<audio data-inline="true" id="audio-5" controls="true" style="display:none;">
+		<source src="<mt:blogURL>lessons/samples/Mml1ae5.mp3" />
+	</audio>
+	</span>
+       	
+    <script language="JavaScript">
+
+		var image5 = document.getElementById("pImage5");
+		var btnPlay5 = document.getElementById("play5");
+
+		var prompted = 0;
+		var percent = 0.0;
+      	var correct = 0; 
+	  	var total = 0; 
+	  	var voted = 0;
+      	var basename5 = 'http://mt.ccnmtl.columbia.edu/majmin_mbl/trainers/media/trainer';
+	  	var pick5 = Math.floor(Math.random()*40); 
+      	var filepicked5 = basename5+"3a/3aex"+pick5+".mp3";
+	  	var audioElement5 = document.getElementById('audio-5');
+		var url = self.document.location.hash;
+		updateLabels5();
+		
+		
+		btnPlay5.addEventListener("click", function(){
+		speakerOn5();			
+	}, false);
+
+function speakerOn5()	
+{
+		image5.src = "http://i.imgur.com/poNZ6.png";			
+}
+
+
+
+function updateLabels5()
+{
+	  	$(".duration span").html(audioElement5.duration.toFixed(1));
+      	$(".filename span").html(pick5);
+      	$(".testnum").html(total);
+      	$(".correct").html(correct); 
+      	$(".total").html(total);
+      	$(".response").html("");
+}	
+
+function newtune5()
+{
+	if(voted == 1)
+	{
+		pick5 = Math.floor(Math.random()*40); 
+		filepicked5 = basename5+"3a/3aex"+pick5+".mp3";
+		audioElement5.setAttribute('src', filepicked5);
+        audioElement5.play();
+		voted = 0;
+		speakerOn5();			
+		updateLabels5();
+	}
+	else if(voted == 0)
+	{
+	     $(".response").html("Awaiting response. Try Play Again?");
+	}
+	  
+}
+
+function play5()
+{
+	if(url == "#quiz10660")
+	{
+		audioElement5.setAttribute('src', filepicked5);
+    	audioElement5.play();
+	}
+}
+
+function minor5()
+{
+	if (voted == 1) 
+	{ 
+		$(".response").html("Already voted. Play new sample");
+	}
+    else 
+	{
+        voted = 1;
+        if(pick5%2 == 1)
+		{
+        	correct++; 
+			$(".response").html("Yes, that was minor triad."); 
+		}
+        else 
+		{
+			red5();
+			$(".response").html("Minor is incorrect");
+		}
+        total++;   
+        $(".total").html(total);  
+ 		$(".correct").html(correct); 
+	}
+	percent = correct/total;
+	if(percent >= .75 && total >= 10 && prompted == 0)
+	{
+		$.mobile.changePage( "success.html", { role: "dialog", transition: "pop"} );
+		prompted = 1;
+	}
+	if(percent <= .5 && total >= 10 && prompted == 0)
+	{
+		$.mobile.changePage( "failure.html", { role: "dialog", transition: "pop"} );
+		prompted = 1;
+	}
+}
+
+function major5()
+{
+	if (voted == 1) 
+	{ 
+		$(".response").html("Already voted. Play new sample");
+	}
+    else 
+	{
+        voted = 1;
+        if(pick5%2 != 1)
+		{
+        	correct++; 
+			$(".response").html("Yes, that was major triad."); 
+		}
+        else 
+		{
+			red5();
+			$(".response").html("Major is incorrect");
+		}
+        total++
+        $(".total").html(total);     
+ 		$(".correct").html(correct); 
+	}
+	percent = correct/total;
+	if(percent >= .75 && total >= 10 && prompted == 0)
+	{
+		$.mobile.changePage( "success.html", { role: "dialog", transition: "pop"} );
+		prompted = 1;
+	}
+	if(percent <= .5 && total >= 10 && prompted == 0)
+	{
+		$.mobile.changePage( "failure.html", { role: "dialog", transition: "pop"} );
+		prompted = 1;
+	}
+}
+
+audioElement5.addEventListener("ended", function() 
+{
+    image5.src = "http://i.imgur.com/1scqH.png";
+	audioElement5.pause();
+	audioElement5.currentTime = 0;	
+}, false);
+
+function red5()
+{
+	document.getElementById('Fcorrect5').style.color = 'red';
+	document.getElementById('Ftotal5').style.color = 'red';
+	document.getElementById('Fslash5').style.color = 'red';
+	
+	setTimeout(function(){
+		document.getElementById('Fcorrect5').style.color = 'green';
+		document.getElementById('Ftotal5').style.color = 'green';
+		document.getElementById('Fslash5').style.color = 'green';
+		
+		},1250);
+}
+
+
+	</script>

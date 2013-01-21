@@ -1,0 +1,55 @@
+<mt:Ignore>
+       Entries.html is a template for the lessons. It is a empty jquery mobile page that then pulls in the data from the lesson blog entries. You should only be editing this page if you want to change something that will be constant on every lesson page.
+</mt:Ignore>
+
+<!DOCTYPE html>
+<html>
+   <head>
+
+    <meta charset="utf-8" />
+       <meta name="viewport" content="width=device-width, initial-scale=1" />
+       <link rel="apple-touch-icon" href="http://ccnmtl.columbia.edu/images/banner/c_icon.png"/>
+       <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
+	   <link rel="stylesheet" type="text/css" href="MajMinTheme.css" />
+       
+       <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js">
+       </script>
+       <script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js">
+       </script>
+  	
+
+        </head>
+   <body>
+		
+ 	<mt:entries category="Lessons" sort_by="title" sort_order="ascend">
+	<mt:keyvalues>
+		<div data-role="page" id="entry<mt:entryID>">
+			<div data-role="header" data-position="fixed">
+				<a data-ajax="false" href="../majmin_mbl/lessons.html" data-theme="d" class='ui-btn-left ui-btn-back' data-icon='arrow-l' data-transition="slide" data-direction="reverse" >Lessons</a>
+
+				<mt:ifcategory name="Lessons"><h1>Lesson <mt:entrytitle trim_to="1"></h1></mt:ifcategory>
+	   			<mt:ifcategory name="Trainers"><h1>Trainers</h1></mt:ifcategory>
+				<a data-theme="c" data-rel="dialog" data-transition="pop" href="goals.html" class="ui-btn-right">Goals</a>
+	
+	
+			</div> <!-- /header -->
+  
+     		<div data-role="content">
+				
+					<span style="display:none;"><audio id="audio" controls="controls"> 
+					<source src="<mt:blogURL>lessons/samples/Mml1ae1.mp3" type="audio/mp3" />
+					</audio></span>	
+				
+        		<h2 id="t<mt:entryID>"><mt:entryTitle></h2>
+			 	<mt:entrybody mteval="1">
+			
+
+			</div> <!-- /content -->
+		</div> <!-- /page -->
+		</mt:keyvalues>
+		</mt:entries>
+		
+	   
+	</body>
+</html>
+		

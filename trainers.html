@@ -1,0 +1,59 @@
+<mt:Ignore>
+      
+      Trainers.html is similar to lessons.html. It controls the menu for the trainers. It is a simple jquery mobile page that includes an unordered list. This list is then populated with the entries with the category labeled as "Trainers." Edit this page only if you want to edit the menu for the trainers, not the trainer content itself.
+
+</mt:Ignore>
+
+
+<!DOCTYPE html>
+<html>
+   <head>
+
+    <meta charset="utf-8" />
+       <meta name="viewport" content="width=device-width, initial-scale=1" />
+       <link rel="apple-touch-icon" href="http://ccnmtl.columbia.edu/images/banner/c_icon.png"/>
+       <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
+	   <link rel="stylesheet" type="text/css" href="MajMinTheme.css" />
+       <style>
+           /* App custom styles */
+       </style>
+       <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js">
+       </script>
+       <script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js">
+       </script>
+   		<script type="text/javascript"
+          src="http://maps.google.com/maps/api/js?sensor=true"></script>
+       
+        </head>
+   <body>
+   
+   
+   
+   <div data-role="page" id="lessons" >
+	<div data-role="header">
+		
+		<a data-ajax="false" data-theme="d" href="index_jqm.html" class='ui-btn-left' data-icon='arrow-l' data-transition="slide" data-direction="reverse" >Back</a>
+		<title>Trainers</title>		
+		<h1>Trainers</h1>
+
+	</div> <!-- /header -->
+
+    
+     <div data-role="content">
+     
+      <ul data-role="listview" data-inset="true">
+      		<mt:entries category="Trainers" sort_by="title" sort_order="ascend">
+			<li>
+				<a data-ajax="false" href="quizzes.html#quiz<mt:entryID>" data-prefetch><mt:entrytitle></a>
+			</li>
+			</mt:entries>
+      </ul>
+    
+     </div> <!-- /content -->
+</div> <!-- /page -->
+
+     
+     </body>
+</html>
+ 
+ 

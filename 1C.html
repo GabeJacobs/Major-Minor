@@ -1,0 +1,181 @@
+  <p>Q: Is this a major or minor third?</p>
+<a data-theme="a" data-inline="true"  onclick="play3()" data-role="button" data-mini="true" id="play3" style="width:170px;vertical-align:middle;"><img id="pImage3" style="vertical-align:text-top;margin-right:7px;" src="http://i.imgur.com/1scqH.png" alt="play">Play Sample</a><span style="margin-left:10px;font-size:40px;color:green;vertical-align:middle;" id="Fcorrect3" class="correct">0</span><span id="Fslash3" style="font-size:40px;vertical-align:middle;">/</span><span id="Ftotal3" style="font-size:40px;color:green;vertical-align:middle;" class="total">0</span></p>
+A: <span class="response"></span>
+<fieldset class="ui-grid-a">
+	<div class="ui-block-a">
+	<a data-mini="true" onclick="major(3)"data-role="button" href="#">Major</a>
+	</div>
+	<div class="ui-block-b">
+	<a data-mini="true" onclick="minor3()"data-role="button" href="#">Minor</a>
+	</div></fieldset><fieldset class="ui-grid-a">
+
+	<center><a data-mini="true" onclick="newtune3()" data-role="button" href="#">Next Sample</a><center>
+</fieldset> 
+<em>To begin, press the "Play Sample" button above</em>
+
+<span style="display:none;">
+<audio data-inline="true" id="audio-3" controls="true" style="display:none;">
+	<source src="<mt:blogURL>lessons/samples/Mml1ae5.mp3" />
+</audio>
+</span>
+       
+    <script language="JavaScript">
+
+		var image3 = document.getElementById("pImage3");
+		var btnPlay3 = document.getElementById("play3");
+
+		var prompted = 0;
+		var percent = 0.0;	
+      	var correct = 0; 
+	  	var total = 0; 
+	  	var voted = 0;
+      	var basename3 = 'http://mt.ccnmtl.columbia.edu/majmin_mbl/trainers/media/trainer';
+	  	var pick3 = Math.floor(Math.random()*40); 
+      	var filepicked3 = basename3+"1c/1cex"+pick3+".mp3";
+	  	var audioElement3 = document.getElementById('audio-3');
+		var url = self.document.location.hash;
+		updateLabels3();
+		
+		btnPlay3.addEventListener("click", function(){
+		speakerOn3();			
+	}, false);
+
+		function speakerOn3()
+		{
+			image3.src = "http://i.imgur.com/poNZ6.png";			
+		}
+
+
+function updateLabels3()
+{
+	  	$(".duration span").html(audioElement3.duration.toFixed(1));
+      	$(".filename span").html(pick3);
+      	$(".testnum").html(total);
+      	$(".correct").html(correct); 
+      	$(".total").html(total);
+      	$(".response").html("");
+}	
+
+function newtune3()
+{
+	if(voted == 1)
+	{
+		pick3 = Math.floor(Math.random()*40); 
+		filepicked3 = basename3+"1c/1cex"+pick3+".mp3";
+		audioElement3.setAttribute('src', filepicked3);
+        audioElement3.play();
+		voted = 0;
+		speakerOn3();
+		updateLabels3();
+	}
+	else if(voted == 0)
+	{
+	     $(".response").html("Awaiting response. Try Play Again?");
+	}
+	  
+}
+
+function play3()
+{
+		audioElement3.setAttribute('src', filepicked3);
+    	audioElement3.play();
+}
+
+function minor3()
+{
+	if (voted == 1) 
+	{ 
+		$(".response").html("Already voted. play3 new sample");
+	}
+    else 
+	{
+        voted = 1;
+        if(pick3%2 == 1)
+		{
+        	correct++; 
+			$(".response").html("Yes, that was minor third."); 
+		}
+        else 
+		{
+			red3();
+			$(".response").html("Minor is incorrect");
+		}
+        total++;   
+        $(".total").html(total);  
+ 		$(".correct").html(correct); 
+	}	
+	percent = correct/total;
+	if(percent >= .75 && total >= 10 && prompted == 0)
+	{
+		$.mobile.changePage( "success.html", { role: "dialog", transition: "pop"} );
+		prompted = 1;
+	}
+	if(percent <= .5 && total >= 10 && prompted == 0)
+	{
+		$.mobile.changePage( "failure.html", { role: "dialog", transition: "pop"} );
+		prompted = 1;
+	}
+}
+
+function major3()
+{
+	if (voted == 1) 
+	{ 
+		$(".response").html("Already voted. play new sample");
+	}
+    else 
+	{
+        voted = 1;
+        if(pick3%2 != 1)
+		{
+        	correct++; 
+			$(".response").html("Yes, that was major third."); 
+		}
+        else 
+		{
+			red3();
+			$(".response").html("Major is incorrect");
+		}
+        total++
+        $(".total").html(total);     
+ 		$(".correct").html(correct); 
+	}
+	percent = correct/total;
+	if(percent >= .75 && total >= 10 && prompted == 0)
+	{
+		$.mobile.changePage( "success.html", { role: "dialog", transition: "pop"} );
+		prompted = 1;
+	}
+	if(percent <= .5 && total >= 10 && prompted == 0)
+	{
+		$.mobile.changePage( "failure.html", { role: "dialog", transition: "pop"} );
+		prompted = 1;
+	}
+}
+
+
+audioElement3.addEventListener("ended", function() 
+{
+    image3.src = "http://i.imgur.com/1scqH.png";
+	audioElement3.pause();
+	audioElement3.currentTime = 0;	
+}, false);
+
+function red3()
+{
+	document.getElementById('Fcorrect3').style.color = 'red';
+	document.getElementById('Ftotal3').style.color = 'red';
+	document.getElementById('Fslash3').style.color = 'red';
+	
+	setTimeout(function(){
+		document.getElementById('Fcorrect3').style.color = 'green';
+		document.getElementById('Ftotal3').style.color = 'green';
+		document.getElementById('Fslash3').style.color = 'green';
+		
+		},1250);
+}
+
+
+
+
+	</script>

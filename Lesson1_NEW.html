@@ -1,0 +1,153 @@
+<div id="L1" style="padding-top:1px;padding-bottom:1px;padding-left:1em;padding-right:1em;background-color:#ffecd6;"><h4>Lesson Goals:</h4>
+		<ul>
+		 <li>Differentiating between major and minor thirds </li>
+		 <li>Sonic Glossary entry Third (particularly the beginning of the entry through "The Third in Melody") </li>
+		</ul>
+    </div>
+
+In learning to distinguish major from minor, a good place to start is with major and minor thirds. Here are the basic definitions of major and minor thirds:
+
+**The Major Third**
+
+==
+<div style="text-align:center">
+<a data-theme="b" data-inline="true" data-role="button" data-mini="true" id="play1"><img id="pImage1" style="vertical-align:text-top;
+margin-right:7px;" src="<mt:blogURL>images/audio_off.png" alt="play">Major third successively, together</a></div>
+==
+
+<!--<p><small>the major third sounded (1) successively, (2) simultaneously</small></p>-->
+
+The interval sounds smooth and free of tension. That is to say, it is a consonant interval. It conveys a feeling of stability. The distance between the two notes of a major third comprises two whole-steps.
+
+<div style="text-align:center"><em>2 whole-steps (= 4 half-steps)</em></div>
+
+**The Minor Third**
+
+==
+<div style="text-align:center">
+<a data-theme="b" data-inline="true" data-role="button" data-mini="true" id="play2"><img id="pImage2" style="vertical-align:text-top;
+margin-right:7px;" src="<mt:blogURL>images/audio_off.png" alt="play">Minor third successively, together</a></div>
+==
+
+<!--<p><small>the minor third sounded (1) successively, (2) simultaneously</small></p>-->
+
+Like the major third, this interval sounds smooth and free of tension -- consonant -- though it perhaps sounds a little less out-going, a little more somber, than the major third. The distance between the two notes of a minor third comprises one whole-step and one half-step. 
+
+
+<div style="text-align:center"><em>1 whole-step + 1 half-step ( = 3 half-steps)</em></div>
+
+**Hearing Major and Minor Thirds**
+
+That's really all there is (conceptually) to major and minor thirds. The important part is learning to distinguish them; for some of you that will mean developing a very new kind of skill. Listen repeatedly to the examples of major and minor thirds below. The tones are presented both successively and simultaneously; you should be familiar with both forms. When you feel that you can tell the difference between the examples below, go on to the training environment for major and minor thirds.
+
+==
+
+<fieldset class="ui-grid-a">
+	<div class="ui-block-a"><a data-theme="b" data-role="button" data-mini="true" id="play3"><img id="pImage3" style="vertical-align:text-top;margin-right:7px;" src="<mt:blogURL>images/audio_off.png" alt="play">Major third, successively</a></div>
+	<div class="ui-block-b"><a data-theme="b" data-role="button" data-mini="true" id="play4"><img id="pImage4" style="vertical-align:text-top;margin-right:7px;" src="<mt:blogURL>images/audio_off.png" alt="play">Major third, simultaneously</a></div>
+</fieldset>
+<fieldset class="ui-grid-a">
+	<div class="ui-block-a"><a data-theme="b" data-role="button" data-mini="true" id="play5"><img id="pImage5" style="vertical-align:text-top;margin-right:7px;" src="<mt:blogURL>images/audio_off.png" alt="play">Minor third, successively</a></div>
+	<div class="ui-block-b"><a data-theme="b"  data-role="button" data-mini="true" id="play6"><img id="pImage6" style="vertical-align:text-top;margin-right:7px;" src="<mt:blogURL>images/audio_off.png" alt="play">Minor third, simultaneously</a></div>
+</fieldset>
+==
+
+<h3>Trainer(s)</h3>
+<div class="ui-grid-b">
+              <div class="ui-block-a">
+                  <a data-ajax="false" data-mini="true" data-role="button" data-theme="e" data-transition="pop" href="../trainers/10667.html">1A</a>
+				</div>
+              <div class="ui-block-b">
+                  <a data-ajax="false" data-mini="true" data-role="button" data-theme="e" data-transition="pop" href="../trainers/10235.html">1B</a>
+              </div>
+			 <div class="ui-block-c">
+                  <a data-ajax="false" data-mini="true" data-role="button" data-theme="e" data-transition="pop" href="../trainers/10658.html">1C</a>
+              </div>
+ </div>
+
+==
+<script>
+
+	var myAudio = document.getElementById("audio");
+	var button = 0;
+
+	var image1 = document.getElementById("pImage1");
+	var image2 = document.getElementById("pImage2");
+	var image3 = document.getElementById("pImage3");
+	var image4 = document.getElementById("pImage4");
+	var image5 = document.getElementById("pImage5");
+	var image6 = document.getElementById("pImage6");
+    var images = new Array(image1, image2, image3, image4, image5, image6); // condensed array
+	
+	var btnPlay1 = document.getElementById("play1");	
+	var btnPlay2 = document.getElementById("play2");	
+	var btnPlay3 = document.getElementById("play3");
+	var btnPlay4 = document.getElementById("play4");	
+	var btnPlay5 = document.getElementById("play5");	
+	var btnPlay6 = document.getElementById("play6");
+	
+	var src1 = "http://mt.ccnmtl.columbia.edu/majmin_mbl/lessons/samples/Mml1ae1.mp3";
+	var src2 = "http://mt.ccnmtl.columbia.edu/majmin_mbl/lessons/samples/Mml1ae2.mp3";
+	var src3 = "http://mt.ccnmtl.columbia.edu/majmin_mbl/lessons/samples/Mml1ae3.mp3";
+	var src4 = "http://mt.ccnmtl.columbia.edu/majmin_mbl/lessons/samples/Mml1ae4.mp3";
+	var src5 = "http://mt.ccnmtl.columbia.edu/majmin_mbl/lessons/samples/Mml1ae5.mp3";
+	var src6 = "http://mt.ccnmtl.columbia.edu/majmin_mbl/lessons/samples/Mml1ae6.mp3";
+	
+	var srcs = new Array(src1, src2, src3, src4, src5, src6); // condensed asrc5rray
+    
+	
+	var backURL = self.document.location.pathname;
+				
+	 
+	btnPlay1.addEventListener("click", function(){
+			btnPressed(0);
+		}, false);
+		
+		btnPlay2.addEventListener("click", function(){
+		    btnPressed(1);
+		}, false);
+		
+		btnPlay3.addEventListener("click", function(){
+		    btnPressed(2);
+		}, false);
+		
+		btnPlay4.addEventListener("click", function(){
+		    btnPressed(3);
+		}, false);
+		
+		btnPlay5.addEventListener("click", function(){
+		    btnPressed(4);
+		}, false);
+		
+		btnPlay6.addEventListener("click", function(){
+		    btnPressed(5);
+		}, false);
+		
+		myAudio.addEventListener("ended", function() 
+		{
+		    image1.src = "<mt:blogURL>images/audio_off.png";
+		    image2.src = "<mt:blogURL>images/audio_off.png";
+		    image3.src = "<mt:blogURL>images/audio_off.png";
+		    image4.src = "<mt:blogURL>images/audio_off.png";
+		    image5.src = "<mt:blogURL>images/audio_off.png";
+		    image6.src = "<mt:blogURL>images/audio_off.png";
+			myAudio.pause();
+			myAudio.currentTime = 0;	
+		}, false);
+	
+		function btnPressed(button)
+        {
+            if (myAudio.paused){
+    			images[button].src = "<mt:blogURL>images/audio_on.png";		
+    			myAudio.pause();
+    			myAudio.src=srcs[button];myAudio.load();myAudio.play();
+    			}
+    		else {
+    			images[button].src = "<mt:blogURL>images/audio_off.png";
+    			myAudio.pause();
+    			}		
+    		
+        }
+	
+</script>
+==
